@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.body {
+  
+}
+
 .container {
   max-width: 600px;
   margin: 0 auto;
@@ -15,15 +19,11 @@
 .bookmark-list > li {
   margin-bottom: 20px;
   border: 1px solid grey;
-  padding: 20px;
 }
 
-.bookmark-element {
-  display: block;
-  color: grey;
-  font-style: italic;
-  font-size: 20px;
-  margin-bottom: 15px;
+.bookmark-title {
+  padding: 10px;
+  background-color: rgb(34, 126, 168)
 }
 
 .bookmark-button {
@@ -36,4 +36,80 @@
 
 .add-element {
   margin-bottom: 10px;
+  position: relative;
+}
+
+.bookmark-buttons, .bookmark-desc{
+  text-align: center;
+  padding: 10px;
+}
+
+.bookmark-rating {
+  float: right;
+}
+
+#bookmark-form {
+  display: block;
+  padding: 35px 20px;
+  border: 1px solid grey;
+  background-color: lightblue;
+  height: 180px;
+}
+
+.cancel-bookmark {
+  position: absolute;
+  top: 95px;
+  right: 50px;
+}
+
+.add-bookmark {
+  position: absolute;
+  top: 55px;
+  right: 50px
+}
+
+.js-bookmark-description {
+  width:  370px;
+}
+
+.form-input {
+  margin-bottom: 10px;
+  padding: 5px
+}
+
+.top-click {
+  width: 160px;
+  padding: 5px;
+  height: 35px
+}
+
+.form-btn {
+  background-color: rgb(170, 199, 231);
+  border: none;
+  padding: 5px;
+  width: 120px;
+  height: 30px;
+}
+
+.form-btn:hover {
+  background-color: dodgerblue
+}
+
+.btn {
+  padding: 5px;
+  border: none;
+  background-color: rgb(193, 218, 233);
+}
+
+.btn:hover {
+  background-color: rgb(148, 192, 219);
+}
+
+.fa-star {
+  color: gold;
+  text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+}
+
+.js-bookmark-link, .js-bookmark-delete {
+  width: 150px
 }

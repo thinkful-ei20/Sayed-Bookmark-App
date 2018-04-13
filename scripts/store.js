@@ -15,6 +15,13 @@ const store = (function() {
     this.bookmarks = this.bookmarks.filter( item => item.id !== id );
   };
 
+  const filterByRating = function(num) {
+    return this.bookmarks.filter(item => item.rating >= num)
+  };
+
+  const setError = function(e) {
+    this.error = e.responseText;
+  }
 
 
   return {
@@ -25,6 +32,8 @@ const store = (function() {
     addBookmark,
     findById,
     findAndDelete,
-
+    filterByRating,
+    setError,
+    
   };
 }());
