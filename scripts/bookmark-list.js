@@ -7,7 +7,7 @@ const bookmarkList = (function() {
     return `
       <li class="js-bookmark-element" data-item-id="${item.id}">
         <div class="bookmark-title">
-          <span class="bookmark-title">${item.title}</span>
+          <h2 class="title-name">${item.title}</h2>
           <div class="bookmark-rating">
             <span class="stars fa fa-star"> ${item.rating} </span>
           </div>
@@ -28,27 +28,23 @@ const bookmarkList = (function() {
       let currEl = $(event.currentTarget).parent();
       currEl.html(`
         <form id="bookmark-form">
-          <div>
-            <label for="bookmark-title" class="entry-label">
+          <div class="bookmark-top-input">
+            <label for="bookmarkTitle" class="entry-label">Title:</label>
               <input type="text" id="bookmarkTitle" name="bookmark-title" class="js-bookmark-title form-input" placeholder="Title:" required>
-            </label>
-            <label for="bookmark-url" class="entry-label">
+            <label for="bookmarkUrl" class="entry-label">Url:</label>
               <input type="url" id="bookmarkUrl" name="bookmark-url" class="js-bookmark-url form-input" placeholder="Url:" required>
-            </label>
           </div>
-          <label for="star-rating">
-            <select name="star-rating" class="star-rating form-input">
+          <label for="starRating" class="entry-label">Rate:</label>
+            <select name="star-rating" id="starRating" class="star-rating form-input">
               <option value ="1">1 star</option>
               <option value ="2">2 stars</option>
               <option value ="3">3 stars</option>
               <option value ="4">4 stars</option>
               <option value ="5">5 stars</option>
             </select>
-          </label>
           <div>
-            <label for="bookmark-description" class="entry-label">
-              <input type="text" id="bookmarkDescription" name="bookmark-description" class="js-bookmark-description form-input" value="" placeholder="Add a description...">
-            </label>
+            <label for="bookmarkDescription" class="entry-label">Description:</label>
+              <textarea id="bookmarkDescription" name="bookmark-description" class="js-bookmark-description form-input" cols="20" rows="3" placeholder="Add a description..."></textarea>
           </div>
           <button type="submit" class="add-bookmark form-btn">Submit</button>
         </form>
@@ -61,9 +57,16 @@ const bookmarkList = (function() {
     $('.add-element').on('click', '.cancel-bookmark', event => {
       const currEl = $(event.currentTarget).parent();
       currEl.html(`
-        <button class="add-button top-click btn">
-          <span>Add Bookmark</span>
-        </button>
+      <button class="add-button top-click btn">
+        <span>Add Bookmark</span>
+      </button>
+      <select name="star-rating" class="js-star-rating top-click">
+        <option value="0">Rating</option>
+        <option value="5">5 stars</option>
+        <option value="4">4 stars and up</option>
+        <option value="3">3 stars and up</option>
+        <option value="2">2 stars and up</option>
+      </select>
       `);
     });
   }
@@ -89,15 +92,22 @@ const bookmarkList = (function() {
         });
 
       currEl.html(`
-        <button class="add-button btn">
+        <button class="add-button top-click btn">
           <span>Add Bookmark</span>
         </button>
+        <select name="star-rating" class="js-star-rating top-click">
+          <option value="0">Rating</option>
+          <option value="5">5 stars</option>
+          <option value="4">4 stars and up</option>
+          <option value="3">3 stars and up</option>
+          <option value="2">2 stars and up</option>
+        </select>
       `);
     });
   }
 
   function handleStarRatingChanged() {
-    $('.star-filter').on('change', '.js-star-rating', event => {
+    $('.add-element').on('change', '.js-star-rating', event => {
       const ratingValueString = $('.js-star-rating').val();
       const ratingValueNumber = parseInt(ratingValueString);
       const filteredObjs = store.filterByRating(ratingValueNumber);
@@ -124,7 +134,7 @@ const bookmarkList = (function() {
         
         currEl.html(`
             <div class="bookmark-title">
-              <span class="bookmark-title">${thisObj.title}</span>
+              <h2 class="title-name">${thisObj.title}</h2>
               <div class="bookmark-rating">
                 <span class="stars fa fa-star"> ${thisObj.rating} </span>
               </div>
@@ -144,7 +154,7 @@ const bookmarkList = (function() {
         currEl.html(`
 
           <div class="bookmark-title">
-            <span class="bookmark-title">${thisObj.title}</span>
+            <h2 class="title-name">${thisObj.title}</h2>
             <div class="bookmark-rating">
             <span class="stars fa fa-star"> ${thisObj.rating} </span>
             </div>
@@ -178,7 +188,17 @@ const bookmarkList = (function() {
           store.findAndDelete(itemId);
           render();
         }, 
-        () => {});
+        (error) => {
+          store.setError(error);
+          render();
+        });
+    });
+  }
+
+  function handleErrorButtonClicked() {
+    $('.container').on('click', '.error-button', event => {
+      console.log('hello')
+      $('.error-box').html('')
     });
   }
 
@@ -187,10 +207,13 @@ const bookmarkList = (function() {
     const bookmarksString = generateBookmarksString(bookmarks);
     $('.js-bookmark-list').html(bookmarksString);
     if (store.error) {
-      alert(store.error);
+      $('.error-box').html(`
+        <span class="error-message">${store.error}</span>
+        <button class="error-button">
+          <i class="fa fa-close"></i>
+        </button>`);
       store.error = null;
-    }
-
+    } 
   }
 
   function bindEventListeners() {
@@ -201,6 +224,7 @@ const bookmarkList = (function() {
     handleListElementClicked();
     handleCancelNewBookmark();
     handleStarRatingChanged();
+    handleErrorButtonClicked();
   }
 
   return {

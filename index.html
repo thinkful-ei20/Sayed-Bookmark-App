@@ -10,29 +10,25 @@
 </head>
 
 <body>
+  <header role="banner">
+    <h1 class="page-title">Bookmark App</h1>
+  </header>
   <div class="container">
-    <header role="banner">
-      <h1 class="page-title">Bookmark App</h1>
-    </header>
     <section role="region">
       <div class="add-element">
         <button class="add-button top-click btn">
           <span>Add Bookmark</span>
         </button>
-      </div>
-      <div class="star-filter stlyed-select">
-        <label for="star-rating">
-          <select name="star-rating" class="js-star-rating top-click">
+        <select name="star-rating" class="js-star-rating top-click">
             <option value="0">Rating</option>
             <option value="5">5 stars</option>
             <option value="4">4 stars and up</option>
             <option value="3">3 stars and up</option>
             <option value="2">2 stars and up</option>
           </select>
-        </label>
-
       </div>
     </section>
+    <div class="error-box"></div>
     <main role="main">
       <ul class="js-bookmark-list bookmark-list">
       </ul>
