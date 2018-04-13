@@ -28,23 +28,27 @@ const bookmarkList = (function() {
       let currEl = $(event.currentTarget).parent();
       currEl.html(`
         <form id="bookmark-form">
-          <div class="bookmark-top-input">
+          <div class="bookmark-title-input">
             <label for="bookmarkTitle" class="entry-label">Title:</label>
-              <input type="text" id="bookmarkTitle" name="bookmark-title" class="js-bookmark-title form-input" placeholder="Title:" required>
+            <input type="text" id="bookmarkTitle" name="bookmark-title" class="js-bookmark-title form-input" placeholder="Title:" required>
+          </div>  
+          <div class="bookmark-url-input>  
             <label for="bookmarkUrl" class="entry-label">Url:</label>
-              <input type="url" id="bookmarkUrl" name="bookmark-url" class="js-bookmark-url form-input" placeholder="Url:" required>
+            <input type="url" id="bookmarkUrl" name="bookmark-url" class="js-bookmark-url form-input" placeholder="Url:" required>
           </div>
-          <label for="starRating" class="entry-label">Rate:</label>
-            <select name="star-rating" id="starRating" class="star-rating form-input">
-              <option value ="1">1 star</option>
-              <option value ="2">2 stars</option>
-              <option value ="3">3 stars</option>
-              <option value ="4">4 stars</option>
-              <option value ="5">5 stars</option>
-            </select>
+          <div>
+            <label for="starRating" class="entry-label">Rate:</label>
+              <select name="star-rating" id="starRating" class="star-rating form-input">
+                <option value ="1">1 star</option>
+                <option value ="2">2 stars</option>
+                <option value ="3">3 stars</option>
+                <option value ="4">4 stars</option>
+                <option value ="5">5 stars</option>
+              </select>
+          </div>
           <div>
             <label for="bookmarkDescription" class="entry-label">Description:</label>
-              <textarea id="bookmarkDescription" name="bookmark-description" class="js-bookmark-description form-input" cols="20" rows="3" placeholder="Add a description..."></textarea>
+              <textarea id="bookmarkDescription" name="bookmark-description" class="js-bookmark-description form-input" cols="40" rows="3" placeholder="Add a description..."></textarea>
           </div>
           <button type="submit" class="add-bookmark form-btn">Submit</button>
         </form>

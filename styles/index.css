@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: darkcyan;
+  background-color: rgb(95, 169, 230);
 }
 .container {
   max-width: 800px;
@@ -11,7 +11,6 @@ body {
   margin: 20px auto;
   padding: 50px;
   background-color: white;
-  position: relative;
 }
 
 .bookmark-list {
@@ -63,33 +62,33 @@ body {
   padding: 35px 20px;
   border: 1px solid grey;
   background-color: lightblue;
-  height: 180px;
+  /* height: 180px; */
 }
 
 .cancel-bookmark {
   position: absolute;
-  top: 95px;
+  top: 150px;
   right: 50px;
 }
 
 .add-bookmark {
   position: absolute;
-  top: 55px;
-  right: 80px
+  top: 95px;
+  right: 50px
 }
 
 .add-element {
   margin-top: 10px;
-  position: relative;
 }
 
 .js-bookmark-description {
-  width:  370px;
+  max-width: 400px;
 }
 
 .form-input {
   margin-bottom: 10px;
   padding: 5px;
+  display: block;
 }
 
 .top-click {
@@ -139,11 +138,20 @@ body {
   right: 0;
 }
 
-.entry-label {
-  display: none;
-}
-
 .error-box {
   text-align: center;
   background-color: yellow;
+}
+
+.bookmark-title-input {
+  float: left;
+  margin-right: 20px;
+}
+
+.entry-label {
+  display: block;
+}
+
+.bookmark-url-input {
+  float: left;
 }
